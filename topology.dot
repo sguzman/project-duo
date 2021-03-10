@@ -1,28 +1,62 @@
-digraph G {
+digraph {
+  compound = true;
+  subgraph cluster_duo {
+      label = "Duo Stat Grab";
+      
+      subgraph cluster_duo_api {
+          label = "Duo API";
+          DuoUserData;
+          DuoUserFriendship;
+          DuoCalendar;
+      }
 
-  subgraph cluster_0 {
-    style=filled;
-    color=lightgrey;
-    node [style=filled,color=white];
-    a0 -> a1 -> a2 -> a3;
-    label = "process #1";
+      subgraph cluster_micro {
+          label = "Micro";
+          MicroUser;
+          MicroFriends;
+          MicroData;
+          MicroCalendar;
+      }
+      
+      subgraph cluster_init {
+          label = "Init";
+          InitUser;
+      }
+
+      subgraph cluster_db {
+          label = "DB"
+          UserDB;
+          UserDataDB;
+          UserFriendshipDB;
+          UserCalendarDB;
+      }
+
+      subgraph cluster_schedule {
+          label = "Scheduler"
+          UserSchedule;
+      }
   }
 
-  subgraph cluster_1 {
-    node [style=filled];
-    b0 -> b1 -> b2 -> b3;
-    label = "process #2";
-    color=blue
-  }
-  start -> a0;
-  start -> b0;
-  a1 -> b3;
-  b2 -> a3;
-  a3 -> a0;
-  a3 -> end;
-  b3 -> end;
+    UserSchedule -> UserDB;
+    UserDB -> UserSchedule;
+    UserSchedule -> MicroUser;
 
-  start [shape=Mdiamond];
-  end [shape=Msquare];
-  label = "Duo Stat Grab"
+    InitUser -> MicroUser;
+
+    MicroUser -> UserDB;
+    MicroUser -> MicroFriends;
+    MicroUser -> MicroData;
+    MicroUser -> MicroCalendar;
+
+    MicroData -> DuoUserData;
+    DuoUserData -> MicroData;
+    MicroData -> UserDataDB;
+
+    MicroCalendar -> DuoCalendar;
+    DuoCalendar -> MicroCalendar;
+    MicroCalendar -> UserCalendarDB;
+
+    MicroFriends -> DuoUserFriendship;
+    DuoUserFriendship -> MicroFriends;
+    MicroFriends -> UserFriendshipDB;
 }
