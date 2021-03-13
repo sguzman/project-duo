@@ -7,3 +7,6 @@
 [submodule "duo-conf"]
 	path = duo-conf
 	url = https://github.com/sguzman/duo-conf
+[submodule "duo-service-ready"]
+	path = duo-service-ready
+	url = https://github.com/sguzman/duo-service-ready
