@@ -1,0 +1,6 @@
+[submodule "duo-db"]
+	path = duo-db
+	url = https://github.com/sguzman/duo-db
+[submodule "duo-example-data"]
+	path = duo-example-data
+	url = https://github.com/sguzman/duo-example-data
