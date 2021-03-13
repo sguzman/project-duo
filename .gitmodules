@@ -4,3 +4,6 @@
 [submodule "duo-example-data"]
 	path = duo-example-data
 	url = https://github.com/sguzman/duo-example-data
+[submodule "duo-conf"]
+	path = duo-conf
+	url = https://github.com/sguzman/duo-conf
