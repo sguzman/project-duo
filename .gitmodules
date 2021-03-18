@@ -10,3 +10,6 @@
 [submodule "duo-service-ready"]
 	path = duo-service-ready
 	url = https://github.com/sguzman/duo-service-ready
+[submodule "duo-get-http"]
+	path = duo-get-http
+	url = https://github.com/sguzman/duo-get-http
