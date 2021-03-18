@@ -1,0 +1,36 @@
+digraph {
+  compound = true;
+  subgraph cluster_duo {
+      label = "Duo User Friends Grab";
+      
+      subgraph cluster_duo_api {
+          label = "Duo API";
+          DuoUserFriendship;
+      }
+
+      subgraph cluster_micro {
+          label = "Micro";
+          MicroUser;
+          MicroHTTP;
+      }
+
+      subgraph cluster_db {
+          label = "DB"
+          UserDB;
+          UserFriendshipDB;
+      }
+  }
+
+    MicroUser -> UserDB [label="1."];
+    UserDB -> MicroUser [label="2."];
+
+    MicroUser -> MicroHTTP [label="3."];
+
+    MicroHTTP -> DuoUserFriendship [label="4."]
+    DuoUserFriendship -> MicroHTTP  [label="5."]
+
+    MicroHTTP -> MicroUser [label="6."]
+
+    MicroUser -> UserDB [label="7."];
+    MicroUser -> UserFriendshipDB [label="8."];
+}
